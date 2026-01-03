@@ -1,7 +1,7 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+torch==2.1.2+cpu
+openai-whisper
 fastapi
 uvicorn
 python-multipart
-openai-whisper
-torch
-transformers
-ffmpeg-python
