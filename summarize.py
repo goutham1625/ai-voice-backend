@@ -1,20 +1,11 @@
-from transformers import pipeline
-
-# 🔥 FAST summarizer
-summarizer = pipeline(
-    "summarization",
-    model="sshleifer/distilbart-cnn-12-6"
-)
-
 def summarize_text(text: str) -> str:
-    if len(text.split()) < 25:
-        return text  # skip summarization for short text
+    """
+    Simple extractive summary (deployment-safe)
+    """
+    sentences = text.split(".")
+    sentences = [s.strip() for s in sentences if s.strip()]
 
-    summary = summarizer(
-        text,
-        max_length=80,
-        min_length=25,
-        do_sample=False
-    )
+    if len(sentences) <= 2:
+        return text
 
-    return summary[0]["summary_text"]
+    return ". ".join(sentences[:2]) + "."
